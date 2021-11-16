@@ -8,14 +8,11 @@ describe('Testa se a página contém as informações sobre a Pokédex', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/about');
 
-    const about = screen.getByRole('heading', { name: /about pokédex/i, level: 2 });
-    expect(about).toBeInTheDocument();
+    expect(screen.getByRole('heading',
+      { name: /about pokédex/i, level: 2 })).toBeInTheDocument();
 
-    const img = screen.getByRole('img', { name: /pokédex/i });
-    expect(img).toBeInTheDocument();
-
-    expect(img).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(screen.getByRole('img', { name: /pokédex/i }))
+      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
 
-// refatorar com expect direto ...
