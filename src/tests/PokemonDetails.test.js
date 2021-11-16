@@ -5,50 +5,36 @@ import renderWithRouter from './Utilities/renderWithRouter';
 import App from '../App';
 
 describe('Testa se as informações detalhadas do Pokémon são mostradas na tela', () => {
-  it('A página deve conter um texto `<name> Details`,com o nome do Pokémon', () => {
+  beforeEach(() => {
     const { history } = renderWithRouter(<App />);
     history.push('/pokemons/25');
-
+  });
+  it('A página deve conter um texto `<name> Details`,com o nome do Pokémon', () => {
     expect(screen.getByRole('heading', {
       name: /Pikachu Details/i })).toBeInTheDocument();
   });
   it('Não deve existir o link de navegação para os detalhes do Pokémon', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
     expect(screen.queryByRole('link', { name: /details/i }))
       .not.toBeInTheDocument();
   });
 
   it('A seção de detalhes deve conter um heading h2 com o texto Summary', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
-
     expect(screen.getByRole('heading', { name: /summary/i, level: 2 }))
       .toBeInTheDocument();
   });
   it('A seção de detalhes deve conter um parágrafo com o resumo do Pokémon', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
-
     expect(screen.getByText(/this intelligent pokémon roasts hard berries with/i))
       .toBeInTheDocument();
   });
 
   it('Todas as localizações do Pokémon devem ser mostradas na seção de detalhes', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
+
   });
   it('testa se detalhes tem heading h2 com o texto Game Locations of <name>', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
-
     expect(screen.getByRole('heading', { name: /game locations of pikachu/i, level: 2 }))
       .toBeInTheDocument();
   });
   it('Testa se a imagem da localização contem o atributo "alt" e "src" com a URL', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
-
     const URL_POK_LOC_IMG_1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
     const URL_POK_LOC_IMG_2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
 
@@ -64,7 +50,6 @@ describe('Testa se as informações detalhadas do Pokémon são mostradas na tel
 
   it('testa se checkbox adiciona e remove respectivamente da lista de favoritos', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
     const favoriteCheckbox = screen.queryByRole('checkbox');
 
     userEvent.click(favoriteCheckbox);
@@ -82,9 +67,6 @@ describe('Testa se as informações detalhadas do Pokémon são mostradas na tel
   });
 
   it('O label do checkbox deve conter o texto Pokémon favoritado?', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/pokemons/25');
-
     expect(screen.getByLabelText('Pokémon favoritado?')).toBeInTheDocument();
   });
 });
