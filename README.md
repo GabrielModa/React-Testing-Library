@@ -18,7 +18,7 @@ Neste projeto, verificamos se voce é capaz de:
 ### Antes de começar a desenvolver:
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-015-a-project-react-testing-library.git`
+  * `git clone https://github.com/GabrielModa/React-Testing-Library.git`
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-015-a-project-react-testing-library`
 
